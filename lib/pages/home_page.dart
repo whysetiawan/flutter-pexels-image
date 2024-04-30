@@ -1,11 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:jala_test/modules/shrimp_price/presentation/carousel.dart';
-import 'package:jala_test/modules/shrimp_price/presentation/floating_filter.dart';
+import 'package:jala_test/core/di.dart';
+import 'package:jala_test/modules/shrimp_price/presentation/bloc/shrimp_price_bloc.dart';
+import 'package:jala_test/modules/shrimp_price/presentation/widgets/carousel.dart';
+import 'package:jala_test/modules/shrimp_price/presentation/widgets/floating_filter.dart';
 import 'package:jala_test/shared/styles/text_styles.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final ShrimpPriceBloc _shrimpPriceBloc = ShrimpPriceBloc(
+    getShrimpPricesUseCase: sl(),
+  );
+  @override
+  void initState() {
+    super.initState();
+    _shrimpPriceBloc.add(ShrimpPriceFetched());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -78,9 +95,18 @@ class HomePage extends StatelessWidget {
             SizedBox(
               height: 16.w,
             ),
-            Divider(
-              color: Colors.grey.shade300,
-              thickness: 4,
+            BlocBuilder<ShrimpPriceBloc, ShrimpPriceState>(
+              bloc: _shrimpPriceBloc,
+              builder: (context, state) {
+                print(
+                  "STATEE ${state.shrimpPrices.toString()}",
+                );
+                print("STATUS ${state.status.toString()}");
+                return Divider(
+                  color: Colors.grey.shade300,
+                  thickness: 4,
+                );
+              },
             ),
           ],
         ),

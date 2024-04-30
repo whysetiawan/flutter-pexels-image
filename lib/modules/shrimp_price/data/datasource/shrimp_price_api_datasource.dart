@@ -8,5 +8,7 @@ final class ShrimpPriceApiDataSource implements ShrimpPriceRepository {
   }
 
   @override
-  Iterable<int> get shrimpSize => throw UnimplementedError();
+  Iterable<int> getShrimpSize(int max) {
+    throw UnimplementedError("getShrimpSize() not available in api datasource");
+  }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:jala_test/modules/shrimp_price/presentation/shrimp_size_list.dart';
+import 'package:jala_test/modules/shrimp_price/presentation/widgets/shrimp_size_list.dart';
 import 'package:jala_test/shared/constants/assets_path.dart';
 import 'package:jala_test/shared/styles/text_styles.dart';
 

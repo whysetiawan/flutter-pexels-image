@@ -4,14 +4,15 @@ import 'package:jala_test/modules/shrimp_price/data/datasource/shrimp_price_loca
 
 final class GetShrimpSizeUseCase
     extends BaseUsecase<Result<List<int>, Null>, void> {
-  final ShrimpPriceLocalDataSource _shrimpPriceApi;
+  final ShrimpPriceLocalDataSource _shrimpPriceLocal;
 
   GetShrimpSizeUseCase({required ShrimpPriceLocalDataSource shrimpPriceApi})
-      : _shrimpPriceApi = shrimpPriceApi;
+      : _shrimpPriceLocal = shrimpPriceApi;
 
   @override
   Result<List<int>, Null> invoke(void params) {
-    final shrimpSize = _shrimpPriceApi.shrimpSize.take(20).toList();
+    final shrimpSize =
+        _shrimpPriceLocal.getShrimpSize(200).map((e) => e).toList();
     return Result.success(shrimpSize);
   }
 }
