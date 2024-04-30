@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jala_test/main.dart';
 import 'package:jala_test/pages/home_page.dart';
 import 'package:jala_test/routes/routes.dart';
 
