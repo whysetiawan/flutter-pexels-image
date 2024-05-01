@@ -30,14 +30,11 @@ class ShrimpPriceBloc extends Bloc<ShrimpPriceEvent, ShrimpPriceState> {
         emit(
           state.copyWith(
             status: ShrimpPriceStatus.success,
-            shrimpPrices: shrimpPrices,
+            shrimpPrices: shrimpPrices.data,
           ),
         );
       },
       onFailure: (e) {
-        print(
-          "ERROr ${e.toString()}",
-        );
         emit(
           state.copyWith(
             status: ShrimpPriceStatus.failure,

@@ -1,14 +1,23 @@
+import 'package:dio/dio.dart';
+import 'package:jala_test/modules/shrimp_price/data/dto/shrimp_prices_response_dto.dart';
+import 'package:jala_test/modules/shrimp_price/data/mapper/shrimp_price_mapper.dart';
 import 'package:jala_test/modules/shrimp_price/domain/entities/shrimp_price_entity.dart';
-import 'package:jala_test/modules/shrimp_price/domain/shrimp_price_repository.dart';
 
-final class ShrimpPriceApiDataSource implements ShrimpPriceRepository {
-  @override
-  Future<List<ShrimpPriceEntity>> getShrimpPrices() {
-    throw UnimplementedError();
-  }
+final class ShrimpPriceApiDataSource {
+  final Dio client;
 
-  @override
-  Iterable<int> getShrimpSize(int max) {
-    throw UnimplementedError("getShrimpSize() not available in api datasource");
+  ShrimpPriceApiDataSource({
+    required this.client,
+  });
+  Future<List<ShrimpPriceEntity>> getShrimpPrices() async {
+    final response = await client.get('/shrimp_prices', queryParameters: {
+      'page': 1,
+      'per_page': 5,
+      'with': 'region,creator',
+    });
+    final dto = ShrimpPricesResponseDto.fromJson(response.data);
+    return ShrimpPriceMapper.shrimpResponseToEntity(
+      dto,
+    );
   }
 }

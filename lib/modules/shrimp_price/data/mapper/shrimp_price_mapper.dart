@@ -15,7 +15,7 @@ final class ShrimpPriceMapper {
               id: e.creator.id,
               name: e.creator.name,
               isVerified: e.creator.emailVerified,
-              occupation: e.creator.occupation,
+              occupation: e.creator.occupation ?? "",
             ),
             prices: {
               20: e.size20,

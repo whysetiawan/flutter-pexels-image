@@ -1,3 +1,5 @@
+import 'package:jala_test/shared/utils/logger.dart';
+
 final class ShrimpPricesResponseDto {
   final List<Datum> data;
   final Links? links;
@@ -15,6 +17,9 @@ final class ShrimpPricesResponseDto {
   }
 
   factory ShrimpPricesResponseDto.fromJson(Map<String, dynamic> json) {
+    json.forEach((key, value) {
+      logger.d("original runtime type ${value.runtimeType}");
+    });
     return ShrimpPricesResponseDto(
       data: (json['data'] as List<dynamic>)
           .map((e) => Datum.fromJson(e as Map<String, dynamic>))
@@ -29,7 +34,7 @@ final class ShrimpPricesResponseDto {
   }
 
   Map<String, dynamic> toJson() => {
-        'data': data.map((e) => e.toJson()).toList(),
+        // 'data': data.map((e) => e.toJson()).toList(),
         'links': links?.toJson(),
         'meta': meta?.toJson(),
       };
@@ -39,7 +44,7 @@ final class Datum {
   final int id;
   final int speciesId;
   final String date;
-  final dynamic size20;
+  final int? size20;
   final int? size30;
   final int? size40;
   final int? size50;
@@ -129,7 +134,7 @@ final class Datum {
         id: json['id'] as int,
         speciesId: json['species_id'] as int,
         date: json['date'] as String,
-        size20: json['size_20'] as dynamic,
+        size20: json['size_20'] as int?,
         size30: json['size_30'] as int?,
         size40: json['size_40'] as int?,
         size50: json['size_50'] as int?,
@@ -138,16 +143,16 @@ final class Datum {
         size80: json['size_80'] as int?,
         size90: json['size_90'] as int?,
         size100: json['size_100'] as int?,
-        size110: json['size_110'] as dynamic,
-        size120: json['size_120'] as dynamic,
-        size130: json['size_130'] as dynamic,
-        size140: json['size_140'] as dynamic,
-        size150: json['size_150'] as dynamic,
-        size160: json['size_160'] as dynamic,
-        size170: json['size_170'] as dynamic,
-        size180: json['size_180'] as dynamic,
-        size190: json['size_190'] as dynamic,
-        size200: json['size_200'] as dynamic,
+        size110: json['size_110'] as int?,
+        size120: json['size_120'] as int?,
+        size130: json['size_130'] as int?,
+        size140: json['size_140'] as int?,
+        size150: json['size_150'] as int?,
+        size160: json['size_160'] as int?,
+        size170: json['size_170'] as int?,
+        size180: json['size_180'] as int?,
+        size190: json['size_190'] as int?,
+        size200: json['size_200'] as int?,
         remark: json['remark'] as String?,
         createdBy: json['created_by'] as int?,
         updatedBy: json['updated_by'] as int?,
@@ -231,7 +236,7 @@ final class Creator {
   final String? phone;
   final bool? phoneVerified;
   final int? gender;
-  final String occupation;
+  final String? occupation;
   final dynamic idNumber;
   final dynamic idScan;
   final dynamic tinNumber;
@@ -250,7 +255,7 @@ final class Creator {
   final dynamic freshchatRestoreId;
   final bool? allowCreateClient;
   final bool? allowCreateToken;
-  final List<String>? interests;
+  final List<dynamic>? interests;
   final State? state;
   final dynamic familyCardNumber;
   final dynamic familyCardScan;
@@ -279,7 +284,7 @@ final class Creator {
     this.phone,
     this.phoneVerified,
     this.gender,
-    required this.occupation,
+    this.occupation,
     this.idNumber,
     this.idScan,
     this.tinNumber,
@@ -335,7 +340,7 @@ final class Creator {
         phone: json['phone'] as String?,
         phoneVerified: json['phone_verified'] as bool?,
         gender: json['gender'] as int?,
-        occupation: json['occupation'] as String,
+        occupation: json['occupation'] as String?,
         idNumber: json['id_number'] as dynamic,
         idScan: json['id_scan'] as dynamic,
         tinNumber: json['tin_number'] as dynamic,
@@ -354,7 +359,7 @@ final class Creator {
         freshchatRestoreId: json['freshchat_restore_id'] as dynamic,
         allowCreateClient: json['allow_create_client'] as bool?,
         allowCreateToken: json['allow_create_token'] as bool?,
-        interests: json['interests'] as List<String>?,
+        interests: json['interests'] as List<dynamic>?,
         state: json['state'] == null
             ? null
             : State.fromJson(json['state'] as Map<String, dynamic>),
@@ -563,13 +568,13 @@ final class Settings {
 final class State {
   final String? knowJalaFrom;
   final String? phoneVerificationExpiredAt;
-  final int? phoneVerificationOtpSent;
+  final dynamic phoneVerificationOtpSent;
   final String? phoneUpdatedAt;
   final bool? partner;
   final dynamic oneSignalFarmId;
-  final bool? homeCoachmarkShown;
-  final bool? homeNewFeatureCoachmarkShown;
-  final int? mailjetId;
+  final dynamic homeCoachmarkShown;
+  final dynamic homeNewFeatureCoachmarkShown;
+  final dynamic mailjetId;
 
   const State({
     this.knowJalaFrom,
@@ -592,14 +597,15 @@ final class State {
         knowJalaFrom: json['know_jala_from'] as String?,
         phoneVerificationExpiredAt:
             json['phone_verification_expired_at'] as String?,
-        phoneVerificationOtpSent: json['phone_verification_otp_sent'] as int?,
+        phoneVerificationOtpSent:
+            json['phone_verification_otp_sent'] as dynamic,
         phoneUpdatedAt: json['phone_updated_at'] as String?,
         partner: json['partner'] as bool?,
         oneSignalFarmId: json['one_signal_farm_id'] as dynamic,
-        homeCoachmarkShown: json['home_coachmark_shown'] as bool?,
+        homeCoachmarkShown: json['home_coachmark_shown'] as dynamic,
         homeNewFeatureCoachmarkShown:
-            json['home_new_feature_coachmark_shown'] as bool?,
-        mailjetId: json['mailjet_id'] as int?,
+            json['home_new_feature_coachmark_shown'] as dynamic,
+        mailjetId: json['mailjet_id'] as dynamic,
       );
 
   Map<String, dynamic> toJson() => {

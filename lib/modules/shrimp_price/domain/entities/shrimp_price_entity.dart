@@ -21,6 +21,22 @@ final class ShrimpPriceEntity extends Equatable {
     return _prices.entries.map((e) => e.value).toList();
   }
 
+  ShrimpPriceEntity copyWith({
+    int? id,
+    Map<int, int?>? prices,
+    PriceCreatorEntity? priceCreator,
+    String? provinceName,
+    String? cityName,
+  }) {
+    return ShrimpPriceEntity(
+      id: id ?? this.id,
+      prices: prices ?? _prices,
+      priceCreator: priceCreator ?? this.priceCreator,
+      provinceName: provinceName ?? this.provinceName,
+      cityName: cityName ?? this.cityName,
+    );
+  }
+
   @override
-  List<Object?> get props => [id];
+  List<Object?> get props => [id, provinceName, cityName, priceCreator];
 }

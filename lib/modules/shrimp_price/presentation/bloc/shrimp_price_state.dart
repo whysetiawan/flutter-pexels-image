@@ -25,7 +25,5 @@ final class ShrimpPriceState extends Equatable {
   }
 
   @override
-  String toString() {
-    return 'ShrimpPriceState(status: $status, shrimpPrices: $shrimpPrices)';
-  }
+  bool? get stringify => true;
 }
