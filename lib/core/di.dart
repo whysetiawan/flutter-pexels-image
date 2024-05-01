@@ -1,6 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:jala_test/core/data/dio_http.dart';
+import 'package:jala_test/modules/diseases/data/api/diseases_api_datasource.dart';
+import 'package:jala_test/modules/diseases/data/diseases_repository_impl.dart';
+import 'package:jala_test/modules/diseases/domain/diseases_repository.dart';
+import 'package:jala_test/modules/diseases/domain/usecases/get_disease_list_usecase.dart';
 import 'package:jala_test/modules/shrimp_news/data/api/shrimp_news_api_datasource.dart';
 import 'package:jala_test/modules/shrimp_news/data/shrimp_news_repository_impl.dart';
 import 'package:jala_test/modules/shrimp_news/domain/shrimp_news_repository.dart';
@@ -16,6 +20,10 @@ final sl = GetIt.instance;
 void injectDependencies() {
   // http client
   sl.registerLazySingleton<Dio>(() => DioHttp().setup());
+  sl.registerLazySingleton<Dio>(
+    () => DioHttp().setupWithToken(),
+    instanceName: "DIO_WITH_TOKEN",
+  );
 
   // Datasources
   sl.registerLazySingleton<ShrimpPriceApiDataSource>(
@@ -28,6 +36,9 @@ void injectDependencies() {
   );
   sl.registerLazySingleton<ShrimpNewsApiDataSource>(
     () => ShrimpNewsApiDataSource(client: sl()),
+  );
+  sl.registerLazySingleton<DiseasesApiDataSource>(
+    () => DiseasesApiDataSource(client: sl(instanceName: "DIO_WITH_TOKEN")),
   );
 
   // Repositories
@@ -42,6 +53,11 @@ void injectDependencies() {
       shrimpApiDataSource: sl(),
     ),
   );
+  sl.registerLazySingleton<DiseasesRepository>(
+    () => DiseasesRepositoryImpl(
+      shrimpApiDataSource: sl(),
+    ),
+  );
 
   // Usecases
   sl.registerLazySingleton<GetShrimpSizeUseCase>(
@@ -50,13 +66,10 @@ void injectDependencies() {
   sl.registerLazySingleton<GetShrimpPricesUseCase>(
     () => GetShrimpPricesUseCase(shrimpPriceRepository: sl()),
   );
-
   sl.registerLazySingleton<GetShrimpNewsUseCase>(
     () => GetShrimpNewsUseCase(shrimpNewsRepository: sl()),
   );
-
-  // Bloc
-  // sl.registerFactory<ShrimpPriceBloc>(
-  //   () => ShrimpPriceBloc(getShrimpPricesUseCase: sl()),
-  // );
+  sl.registerLazySingleton<GetDiseaseListUseCase>(
+    () => GetDiseaseListUseCase(diseasesRepository: sl()),
+  );
 }
