@@ -2,4 +2,5 @@
 
 class API_URL {
   static const String BASE = 'https://app.jala.tech/api';
+  static const String STORAGE = 'https://app.jala.tech/storage';
 }

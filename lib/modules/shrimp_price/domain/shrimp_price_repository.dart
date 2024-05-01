@@ -2,5 +2,5 @@ import 'package:jala_test/modules/shrimp_price/domain/entities/shrimp_price_enti
 
 abstract interface class ShrimpPriceRepository {
   Iterable<int> getShrimpSize(int max);
-  Future<List<ShrimpPriceEntity>> getShrimpPrices();
+  Future<ShrimpPriceEntity> getShrimpPrices();
 }

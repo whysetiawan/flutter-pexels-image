@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:jala_test/modules/shrimp_price/presentation/widgets/shrimp_size_list.dart';
+import 'package:jala_test/modules/shrimp_price/presentation/bloc/shrimp_price_bloc.dart';
+import 'package:jala_test/modules/shrimp_price/presentation/widgets/shrimp_size_list_bottom_sheet.dart';
 import 'package:jala_test/shared/constants/assets_path.dart';
 import 'package:jala_test/shared/styles/text_styles.dart';
 
@@ -21,7 +23,10 @@ class FloatingFilter extends StatelessWidget {
               enableDrag: true,
               isScrollControlled: true,
               builder: (_) {
-                return const ShrimpSizeList();
+                return BlocProvider.value(
+                  value: BlocProvider.of<ShrimpPriceBloc>(context),
+                  child: ShrimpSizeListBottomSheet(),
+                );
               },
             );
           },
@@ -55,11 +60,21 @@ class FloatingFilter extends StatelessWidget {
                         color: Colors.white,
                       ),
                     ),
-                    Text(
-                      "100",
-                      style: TextStyles.title4.copyWith(
-                        color: Colors.white,
-                      ),
+                    BlocBuilder<ShrimpPriceBloc, ShrimpPriceState>(
+                      buildWhen: ((previous, current) {
+                        return true;
+                      }),
+                      builder: (context, state) {
+                        if (state.status.isLoading) {
+                          return const SizedBox();
+                        }
+                        return Text(
+                          state.filter.size.toString(),
+                          style: TextStyles.title4.copyWith(
+                            color: Colors.white,
+                          ),
+                        );
+                      },
                     ),
                   ],
                 )

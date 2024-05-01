@@ -14,7 +14,7 @@ final class ShrimpPriceRepositoryImpl implements ShrimpPriceRepository {
         _shrimpPriceLocal = shrimpPriceLocal;
 
   @override
-  Future<List<ShrimpPriceEntity>> getShrimpPrices() {
+  Future<ShrimpPriceEntity> getShrimpPrices() {
     return _shrimpPriceApi.getShrimpPrices();
   }
 

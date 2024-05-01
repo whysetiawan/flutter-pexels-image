@@ -38,4 +38,9 @@ void injectDependencies() {
   sl.registerLazySingleton<GetShrimpPricesUseCase>(
     () => GetShrimpPricesUseCase(shrimpPriceRepository: sl()),
   );
+
+  // Bloc
+  // sl.registerFactory<ShrimpPriceBloc>(
+  //   () => ShrimpPriceBloc(getShrimpPricesUseCase: sl()),
+  // );
 }

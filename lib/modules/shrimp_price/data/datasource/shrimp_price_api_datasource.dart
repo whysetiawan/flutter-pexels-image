@@ -9,10 +9,10 @@ final class ShrimpPriceApiDataSource {
   ShrimpPriceApiDataSource({
     required this.client,
   });
-  Future<List<ShrimpPriceEntity>> getShrimpPrices() async {
+  Future<ShrimpPriceEntity> getShrimpPrices() async {
     final response = await client.get('/shrimp_prices', queryParameters: {
       'page': 1,
-      'per_page': 5,
+      'per_page': 10,
       'with': 'region,creator',
     });
     final dto = ShrimpPricesResponseDto.fromJson(response.data);

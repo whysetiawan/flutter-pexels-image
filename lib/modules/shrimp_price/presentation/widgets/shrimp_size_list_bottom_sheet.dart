@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jala_test/core/di.dart';
 import 'package:jala_test/modules/shrimp_price/domain/usecases/get_shrimp_size_usecase.dart';
+import 'package:jala_test/modules/shrimp_price/presentation/bloc/shrimp_price_bloc.dart';
 import 'package:jala_test/shared/styles/text_styles.dart';
 
-class ShrimpSizeList extends StatelessWidget {
-  const ShrimpSizeList({super.key});
+class ShrimpSizeListBottomSheet extends StatelessWidget {
+  ShrimpSizeListBottomSheet({super.key});
+
+  final _shrimpSize = sl<GetShrimpSizeUseCase>().invoke(null);
 
   @override
   Widget build(BuildContext context) {
-    final shrimpSize = sl<GetShrimpSizeUseCase>().invoke(null);
     return FractionallySizedBox(
       heightFactor: 0.875,
       child: Column(
@@ -40,12 +43,19 @@ class ShrimpSizeList extends StatelessWidget {
           const Divider(),
           Expanded(
             child: ListView.builder(
-              itemBuilder: (_, index) {
+              itemBuilder: (context, index) {
+                final data = _shrimpSize.data[index];
                 return ListTile(
-                  title: Text(shrimpSize.data[index].toString()),
+                  onTap: () {
+                    context
+                        .read<ShrimpPriceBloc>()
+                        .add(ShrimpSizeChange(size: data));
+                    Navigator.pop(context);
+                  },
+                  title: Text(data.toString()),
                 );
               },
-              itemCount: shrimpSize.data.length,
+              itemCount: _shrimpSize.data.length,
             ),
           ),
         ],

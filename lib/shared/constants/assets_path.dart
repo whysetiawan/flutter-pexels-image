@@ -5,4 +5,5 @@ class AssetsPath {
 
   static const String ic_biomass = "assets/icons/ic_biomass.png";
   static const String ic_location = "assets/icons/ic_location.png";
+  static const String ic_verified = "assets/icons/ic_verified.png";
 }

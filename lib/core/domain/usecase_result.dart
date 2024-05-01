@@ -5,7 +5,7 @@ sealed class Result<T, E> {
   bool get isFailure => this is Failure<T, E>;
 
   factory Result.success(T value) => Success<T, E>(value: value);
-  factory Result.failure(E value) => Failure<T, E>(value: value);
+  factory Result.failure(E value) => Failure<T, E>(error: value);
 
   T get data => when<T>(
         onSuccess: (s) => s._value,
@@ -61,7 +61,7 @@ final class Success<T, E> extends Result<T, E> {
 final class Failure<T, E> extends Result<T, E> {
   final E _error;
 
-  Failure({required E value}) : _error = value;
+  Failure({required E error}) : _error = error;
 
   @override
   E get error => _error;

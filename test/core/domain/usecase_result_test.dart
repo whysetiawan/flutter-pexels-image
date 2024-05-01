@@ -9,7 +9,7 @@ void main() {
   });
 
   test("should return failure", () {
-    final result = Failure(value: Exception());
+    final result = Failure(error: Exception());
     expect(result, isA<Failure<dynamic, Exception>>());
     expect(result.error, isA<Exception>());
   });
@@ -22,7 +22,7 @@ void main() {
 
   test("should generate failure from factory constructor", () {
     final result = Result.failure(Exception());
-    expect(result, isA<Failure<dynamic, Exception>>());
+    expect(result, isA<Failure<int, Exception>>());
     expect(result.error, isA<Exception>());
   });
 }
