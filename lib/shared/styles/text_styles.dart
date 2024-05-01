@@ -6,6 +6,12 @@ class TextStyles {
         fontWeight: FontWeight.w900,
         fontSize: 22,
       );
+
+  static TextStyle get display3 => GoogleFonts.lato().copyWith(
+        fontWeight: FontWeight.w900,
+        fontSize: 18,
+      );
+
   static TextStyle get title2 => GoogleFonts.lato().copyWith(
         fontWeight: FontWeight.w700,
         fontSize: 18,

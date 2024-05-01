@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jala_test/core/di.dart';
+import 'package:jala_test/modules/shrimp_news/presentation/bloc/shrimp_news_bloc.dart';
+import 'package:jala_test/modules/shrimp_price/presentation/bloc/shrimp_price_bloc.dart';
+import 'package:jala_test/pages/shrimp_news_page.dart';
 import 'package:jala_test/pages/shrimp_price_page.dart';
 import 'package:jala_test/shared/styles/text_styles.dart';
 
@@ -56,12 +61,22 @@ class _HomePageState extends State<HomePage>
             ),
           ),
         ),
-        body: const TabBarView(
-          physics: NeverScrollableScrollPhysics(),
+        body: TabBarView(
+          physics: const NeverScrollableScrollPhysics(),
           children: [
-            ShrimpPricePage(),
-            SizedBox(),
-            SizedBox(),
+            BlocProvider(
+              create: (context) => ShrimpPriceBloc(
+                getShrimpPricesUseCase: sl(),
+              ),
+              child: const ShrimpPricePage(),
+            ),
+            BlocProvider(
+              create: (context) => ShrimpNewsBloc(
+                getShrimpNewsUseCase: sl(),
+              ),
+              child: const ShrimpNewsPage(),
+            ),
+            const SizedBox(),
           ],
         ),
       ),

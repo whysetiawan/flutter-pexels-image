@@ -1,6 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:jala_test/core/data/dio_http.dart';
+import 'package:jala_test/modules/shrimp_news/data/api/shrimp_news_api_datasource.dart';
+import 'package:jala_test/modules/shrimp_news/data/shrimp_news_repository_impl.dart';
+import 'package:jala_test/modules/shrimp_news/domain/shrimp_news_repository.dart';
+import 'package:jala_test/modules/shrimp_news/domain/usecases/get_shrimp_news_usecase.dart';
 import 'package:jala_test/modules/shrimp_price/data/datasource/shrimp_price_api_datasource.dart';
 import 'package:jala_test/modules/shrimp_price/data/datasource/shrimp_price_local_datasource.dart';
 import 'package:jala_test/modules/shrimp_price/data/shrimp_price_repository_impl.dart';
@@ -22,12 +26,20 @@ void injectDependencies() {
   sl.registerLazySingleton<ShrimpPriceLocalDataSource>(
     () => ShrimpPriceLocalDataSource(),
   );
+  sl.registerLazySingleton<ShrimpNewsApiDataSource>(
+    () => ShrimpNewsApiDataSource(client: sl()),
+  );
 
   // Repositories
   sl.registerLazySingleton<ShrimpPriceRepository>(
     () => ShrimpPriceRepositoryImpl(
       shrimpPriceApi: sl(),
       shrimpPriceLocal: sl(),
+    ),
+  );
+  sl.registerLazySingleton<ShrimpNewsRepository>(
+    () => ShrimpNewsRepositoryImpl(
+      shrimpApiDataSource: sl(),
     ),
   );
 
@@ -37,6 +49,10 @@ void injectDependencies() {
   );
   sl.registerLazySingleton<GetShrimpPricesUseCase>(
     () => GetShrimpPricesUseCase(shrimpPriceRepository: sl()),
+  );
+
+  sl.registerLazySingleton<GetShrimpNewsUseCase>(
+    () => GetShrimpNewsUseCase(shrimpNewsRepository: sl()),
   );
 
   // Bloc

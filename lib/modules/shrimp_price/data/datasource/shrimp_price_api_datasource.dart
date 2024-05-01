@@ -6,7 +6,7 @@ import 'package:jala_test/modules/shrimp_price/domain/entities/shrimp_price_enti
 final class ShrimpPriceApiDataSource {
   final Dio client;
 
-  ShrimpPriceApiDataSource({
+  const ShrimpPriceApiDataSource({
     required this.client,
   });
   Future<ShrimpPriceEntity> getShrimpPrices() async {

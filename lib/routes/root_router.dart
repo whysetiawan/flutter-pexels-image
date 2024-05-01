@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jala_test/core/di.dart';
-import 'package:jala_test/modules/shrimp_price/presentation/bloc/shrimp_price_bloc.dart';
+import 'package:jala_test/modules/shrimp_news/domain/entity/news_entity.dart';
 import 'package:jala_test/pages/home_page.dart';
+import 'package:jala_test/pages/shrimp_news_detail_page.dart';
 import 'package:jala_test/routes/routes.dart';
 
 class RootRouter {
@@ -10,9 +9,12 @@ class RootRouter {
     switch (settings.name) {
       case Routes.root:
         return MaterialPageRoute(
-          builder: (_) => BlocProvider<ShrimpPriceBloc>(
-            create: (context) => ShrimpPriceBloc(getShrimpPricesUseCase: sl()),
-            child: const HomePage(),
+          builder: (_) => const HomePage(),
+        );
+      case Routes.postsDetail:
+        return MaterialPageRoute(
+          builder: (_) => ShrimpNewsDetailPage(
+            news: settings.arguments as NewsEntity,
           ),
         );
       default:

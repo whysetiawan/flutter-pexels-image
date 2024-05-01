@@ -15,7 +15,7 @@ final class ShrimpPriceMapper {
               priceCreator: PriceCreatorEntity(
                 id: e.creator.id,
                 name: e.creator.name,
-                isVerified: e.creator.emailVerified,
+                isVerified: e.creator.buyer ?? false,
                 occupation: e.creator.occupation ?? "",
                 avatarPath: e.creator.avatar,
               ),

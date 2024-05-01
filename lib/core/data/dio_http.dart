@@ -21,6 +21,8 @@ class DioHttp {
         DioCacheInterceptor(
           options: CacheOptions(
             store: MemCacheStore(),
+            maxStale: const Duration(minutes: 5),
+            policy: CachePolicy.refresh,
           ),
         ),
       )

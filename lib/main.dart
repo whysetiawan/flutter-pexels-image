@@ -47,6 +47,9 @@ class MyApp extends StatelessWidget {
                 titleTextStyle: TextStyles.title2.copyWith(
                   color: Colors.white,
                 ),
+                iconTheme: const IconThemeData(
+                  color: Colors.white, //change your color here
+                ),
               ),
               textTheme: GoogleFonts.latoTextTheme(),
             ),
