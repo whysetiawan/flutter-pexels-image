@@ -13,6 +13,7 @@ import 'package:jala_test/modules/shrimp_price/data/datasource/shrimp_price_api_
 import 'package:jala_test/modules/shrimp_price/data/datasource/shrimp_price_local_datasource.dart';
 import 'package:jala_test/modules/shrimp_price/data/shrimp_price_repository_impl.dart';
 import 'package:jala_test/modules/shrimp_price/domain/shrimp_price_repository.dart';
+import 'package:jala_test/modules/shrimp_price/domain/usecases/get_regions_usecase.dart';
 import 'package:jala_test/modules/shrimp_price/domain/usecases/get_shrimp_prices_usecase.dart';
 import 'package:jala_test/modules/shrimp_price/domain/usecases/get_shrimp_size_usecase.dart';
 
@@ -65,6 +66,9 @@ void injectDependencies() {
   );
   sl.registerLazySingleton<GetShrimpPricesUseCase>(
     () => GetShrimpPricesUseCase(shrimpPriceRepository: sl()),
+  );
+  sl.registerLazySingleton<GetRegionsUseCase>(
+    () => GetRegionsUseCase(shrimpPriceRepository: sl()),
   );
   sl.registerLazySingleton<GetShrimpNewsUseCase>(
     () => GetShrimpNewsUseCase(shrimpNewsRepository: sl()),

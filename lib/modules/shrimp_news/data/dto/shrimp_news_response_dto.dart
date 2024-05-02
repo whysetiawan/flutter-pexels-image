@@ -1,9 +1,15 @@
+import 'package:jala_test/core/data/dto/meta_links_response_dto.dart';
+
 final class ShrimpNewsResponseDto {
   final List<Datum> data;
-  final Links? links;
-  final Meta? meta;
+  final Links links;
+  final Meta meta;
 
-  const ShrimpNewsResponseDto({required this.data, this.links, this.meta});
+  const ShrimpNewsResponseDto({
+    required this.data,
+    required this.links,
+    required this.meta,
+  });
 
   @override
   String toString() {
@@ -15,19 +21,15 @@ final class ShrimpNewsResponseDto {
       data: (json['data'] as List<dynamic>)
           .map((e) => Datum.fromJson(e as Map<String, dynamic>))
           .toList(),
-      links: json['links'] == null
-          ? null
-          : Links.fromJson(json['links'] as Map<String, dynamic>),
-      meta: json['meta'] == null
-          ? null
-          : Meta.fromJson(json['meta'] as Map<String, dynamic>),
+      links: Links.fromJson(json['links'] as Map<String, dynamic>),
+      meta: Meta.fromJson(json['meta'] as Map<String, dynamic>),
     );
   }
 
   Map<String, dynamic> toJson() => {
         'data': data.map((e) => e.toJson()).toList(),
-        'links': links?.toJson(),
-        'meta': meta?.toJson(),
+        'links': links.toJson(),
+        'meta': meta.toJson(),
       };
 }
 
@@ -109,78 +111,5 @@ final class Datum {
         'slug': slug,
         'meta_description': metaDescription,
         'meta_keywords': metaKeywords,
-      };
-}
-
-final class Links {
-  final String? first;
-  final String? last;
-  final dynamic prev;
-  final String? next;
-
-  const Links({this.first, this.last, this.prev, this.next});
-
-  @override
-  String toString() {
-    return 'Links(first: $first, last: $last, prev: $prev, next: $next)';
-  }
-
-  factory Links.fromJson(Map<String, dynamic> json) => Links(
-        first: json['first'] as String?,
-        last: json['last'] as String?,
-        prev: json['prev'] as dynamic,
-        next: json['next'] as String?,
-      );
-
-  Map<String, dynamic> toJson() => {
-        'first': first,
-        'last': last,
-        'prev': prev,
-        'next': next,
-      };
-}
-
-final class Meta {
-  final int? currentPage;
-  final int? from;
-  final int? lastPage;
-  final String? path;
-  final int? perPage;
-  final int? to;
-  final int? total;
-
-  const Meta({
-    this.currentPage,
-    this.from,
-    this.lastPage,
-    this.path,
-    this.perPage,
-    this.to,
-    this.total,
-  });
-
-  @override
-  String toString() {
-    return 'Meta(currentPage: $currentPage, from: $from, lastPage: $lastPage, path: $path, perPage: $perPage, to: $to, total: $total)';
-  }
-
-  factory Meta.fromJson(Map<String, dynamic> json) => Meta(
-        currentPage: json['current_page'] as int?,
-        from: json['from'] as int?,
-        lastPage: json['last_page'] as int?,
-        path: json['path'] as String?,
-        perPage: json['per_page'] as int?,
-        to: json['to'] as int?,
-        total: json['total'] as int?,
-      );
-
-  Map<String, dynamic> toJson() => {
-        'current_page': currentPage,
-        'from': from,
-        'last_page': lastPage,
-        'path': path,
-        'per_page': perPage,
-        'to': to,
-        'total': total,
       };
 }

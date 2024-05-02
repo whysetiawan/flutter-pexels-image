@@ -1,3 +1,4 @@
+import 'package:jala_test/modules/shrimp_price/data/dto/regions_response_dto.dart';
 import 'package:jala_test/shared/utils/logger.dart';
 
 final class ShrimpPricesResponseDto {
@@ -223,7 +224,7 @@ final class Creator {
   final String name;
   final String email;
   final String avatar;
-  final bool emailVerified;
+  final bool? emailVerified;
   final int? subscriptionTypeId;
   final Settings? settings;
   final String? createdAt;
@@ -271,7 +272,7 @@ final class Creator {
     required this.name,
     required this.email,
     required this.avatar,
-    required this.emailVerified,
+    this.emailVerified,
     this.subscriptionTypeId,
     this.settings,
     this.createdAt,
@@ -325,7 +326,7 @@ final class Creator {
         name: json['name'] as String,
         email: json['email'] as String,
         avatar: json['avatar'] as String,
-        emailVerified: json['email_verified'] as bool,
+        emailVerified: json['email_verified'] as bool?,
         subscriptionTypeId: json['subscription_type_id'] as int?,
         settings: json['settings'] == null
             ? null
@@ -419,104 +420,6 @@ final class Creator {
         'expired_date': expiredDate,
         'expired_time': expiredTime,
         'upcoming_birthdate': upcomingBirthdate,
-      };
-}
-
-final class Region {
-  final String? id;
-  final String? name;
-  final dynamic type;
-  final String? latitude;
-  final String? longitude;
-  final String? countryId;
-  final String? countryName;
-  final String? countryNameUppercase;
-  final String provinceId;
-  final String provinceName;
-  final String regencyId;
-  final String regencyName;
-  final String? districtId;
-  final String? districtName;
-  final String? villageId;
-  final String? villageName;
-  final String? fullName;
-  final String? nameTranslated;
-  final String? countryNameTranslated;
-  final String? countryNameTranslatedUppercase;
-
-  const Region({
-    this.id,
-    this.name,
-    this.type,
-    this.latitude,
-    this.longitude,
-    this.countryId,
-    this.countryName,
-    this.countryNameUppercase,
-    required this.provinceId,
-    required this.provinceName,
-    required this.regencyId,
-    required this.regencyName,
-    this.districtId,
-    this.districtName,
-    this.villageId,
-    this.villageName,
-    this.fullName,
-    this.nameTranslated,
-    this.countryNameTranslated,
-    this.countryNameTranslatedUppercase,
-  });
-
-  @override
-  String toString() {
-    return 'Region(id: $id, name: $name, type: $type, latitude: $latitude, longitude: $longitude, countryId: $countryId, countryName: $countryName, countryNameUppercase: $countryNameUppercase, provinceId: $provinceId, provinceName: $provinceName, regencyId: $regencyId, regencyName: $regencyName, districtId: $districtId, districtName: $districtName, villageId: $villageId, villageName: $villageName, fullName: $fullName, nameTranslated: $nameTranslated, countryNameTranslated: $countryNameTranslated, countryNameTranslatedUppercase: $countryNameTranslatedUppercase)';
-  }
-
-  factory Region.fromJson(Map<String, dynamic> json) => Region(
-        id: json['id'] as String?,
-        name: json['name'] as String?,
-        type: json['type'] as dynamic,
-        latitude: json['latitude'] as String?,
-        longitude: json['longitude'] as String?,
-        countryId: json['country_id'] as String?,
-        countryName: json['country_name'] as String?,
-        countryNameUppercase: json['country_name_uppercase'] as String?,
-        provinceId: json['province_id'] as String,
-        provinceName: json['province_name'] as String,
-        regencyId: json['regency_id'] as String,
-        regencyName: json['regency_name'] as String,
-        districtId: json['district_id'] as String?,
-        districtName: json['district_name'] as String?,
-        villageId: json['village_id'] as String?,
-        villageName: json['village_name'] as String?,
-        fullName: json['full_name'] as String?,
-        nameTranslated: json['name_translated'] as String?,
-        countryNameTranslated: json['country_name_translated'] as String?,
-        countryNameTranslatedUppercase:
-            json['country_name_translated_uppercase'] as String?,
-      );
-
-  Map<String, dynamic> toJson() => {
-        'id': id,
-        'name': name,
-        'type': type,
-        'latitude': latitude,
-        'longitude': longitude,
-        'country_id': countryId,
-        'country_name': countryName,
-        'country_name_uppercase': countryNameUppercase,
-        'province_id': provinceId,
-        'province_name': provinceName,
-        'regency_id': regencyId,
-        'regency_name': regencyName,
-        'district_id': districtId,
-        'district_name': districtName,
-        'village_id': villageId,
-        'village_name': villageName,
-        'full_name': fullName,
-        'name_translated': nameTranslated,
-        'country_name_translated': countryNameTranslated,
-        'country_name_translated_uppercase': countryNameTranslatedUppercase,
       };
 }
 

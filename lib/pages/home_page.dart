@@ -69,6 +69,7 @@ class _HomePageState extends State<HomePage>
             BlocProvider(
               create: (context) => ShrimpPriceBloc(
                 getShrimpPricesUseCase: sl(),
+                getRegionsUseCase: sl(),
               ),
               child: const ShrimpPricePage(),
             ),

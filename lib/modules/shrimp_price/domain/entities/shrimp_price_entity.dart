@@ -20,8 +20,8 @@ final class ShrimpPriceEntity extends Equatable {
 final class ShrimpPriceItem extends Equatable {
   final int id;
   final Map<int, int?> _prices;
+  final String regionName;
   final String provinceName;
-  final String cityName;
   final DateTime _createdAt;
   final PriceCreatorEntity priceCreator;
 
@@ -30,7 +30,7 @@ final class ShrimpPriceItem extends Equatable {
     required prices,
     required this.priceCreator,
     required this.provinceName,
-    required this.cityName,
+    required this.regionName,
     required createdAt,
   })  : _prices = prices,
         _createdAt = createdAt;
@@ -56,13 +56,13 @@ final class ShrimpPriceItem extends Equatable {
       prices: prices ?? _prices,
       priceCreator: priceCreator ?? this.priceCreator,
       provinceName: provinceName ?? this.provinceName,
-      cityName: cityName ?? this.cityName,
+      regionName: cityName ?? regionName,
       createdAt: createdAt ?? _createdAt,
     );
   }
 
   @override
-  List<Object?> get props => [id, provinceName, cityName, priceCreator];
+  List<Object?> get props => [id, provinceName, regionName, priceCreator];
 }
 
 final class PriceCreatorEntity extends Equatable {

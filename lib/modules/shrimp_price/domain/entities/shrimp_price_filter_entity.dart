@@ -1,24 +1,34 @@
 import 'package:equatable/equatable.dart';
+import 'package:jala_test/modules/shrimp_price/domain/entities/region_entity.dart';
 
 class ShrimpPriceFilterEntity extends Equatable {
   final int size;
-  final String? regionId;
+  final RegionEntity? _region;
 
   const ShrimpPriceFilterEntity({
     this.size = 100,
-    this.regionId,
-  });
+    RegionEntity? region,
+  }) : _region = region;
+
+  RegionEntity get region =>
+      _region ??
+      const RegionEntity(
+        id: '0',
+        fullName: 'Indonesia',
+        name: 'Indonesia',
+      );
 
   ShrimpPriceFilterEntity copyWith({
     int? size,
     String? regionId,
+    RegionEntity? region,
   }) {
     return ShrimpPriceFilterEntity(
       size: size ?? this.size,
-      regionId: regionId ?? this.regionId,
+      region: region ?? _region,
     );
   }
 
   @override
-  List<Object?> get props => [size, regionId];
+  List<Object?> get props => [size, _region];
 }

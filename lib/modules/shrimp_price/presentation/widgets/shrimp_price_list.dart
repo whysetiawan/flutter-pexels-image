@@ -19,9 +19,8 @@ class _ShrimpPriceListState extends State<ShrimpPriceList>
     super.build(context);
     return BlocBuilder<ShrimpPriceBloc, ShrimpPriceState>(
       builder: (context, state) {
-        final shrimpPrices =
-            state.shrimpPrice.getShrimpPricesBySize(state.filter.size);
-        if (state.status.isLoading) {
+        final shrimpPrices = state.shrimpPrices;
+        if (state.fetchShrimpPriceStatus.isLoading) {
           return const Center(
             child: CircularProgressIndicator(),
           );

@@ -81,7 +81,7 @@ class ShrimpPriceCardItem extends StatelessWidget {
                   color: Colors.grey,
                 ),
               ),
-              Text(data.cityName, style: TextStyles.title2),
+              Text(data.regionName, style: TextStyles.title2),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
