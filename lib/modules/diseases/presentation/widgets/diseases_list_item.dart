@@ -17,8 +17,10 @@ class DiseaseListItem extends StatelessWidget {
       padding: EdgeInsets.all(8.w),
       child: InkWell(
         onTap: () {
-          Navigator.of(context)
-              .pushNamed(Routes.diseaseDetail, arguments: _disease);
+          Navigator.of(context).pushNamed(
+            Routes.diseaseDetail,
+            arguments: _disease,
+          );
         },
         child: Card(
           color: Colors.transparent,

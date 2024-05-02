@@ -112,7 +112,6 @@ class ShrimpPriceBloc extends Bloc<ShrimpPriceEvent, ShrimpPriceState> {
             ),
           ),
         );
-        logger.d("Regions: ${regions.data.currentPage}");
       },
       onFailure: (e) {
         emit(

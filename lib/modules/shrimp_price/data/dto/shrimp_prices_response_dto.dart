@@ -18,9 +18,6 @@ final class ShrimpPricesResponseDto {
   }
 
   factory ShrimpPricesResponseDto.fromJson(Map<String, dynamic> json) {
-    json.forEach((key, value) {
-      logger.d("original runtime type ${value.runtimeType}");
-    });
     return ShrimpPricesResponseDto(
       data: (json['data'] as List<dynamic>)
           .map((e) => Datum.fromJson(e as Map<String, dynamic>))

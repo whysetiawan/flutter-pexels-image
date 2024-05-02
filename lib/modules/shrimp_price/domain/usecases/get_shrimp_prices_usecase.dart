@@ -21,13 +21,13 @@ final class GetShrimpPricesUseCase extends BaseUsecase<
   @override
   Future<Result<ShrimpPriceEntity, Exception>> invoke(
       GetShrimpPricesUseCaseParams params) async {
-    // try {
-    final result = await _shrimpPriceRepository.getShrimpPrices(
-      params.regionId ?? "",
-    );
-    return Result.success(result);
-    // } catch (e) {
-    //   return Result.failure(e as Exception);
-    // }
+    try {
+      final result = await _shrimpPriceRepository.getShrimpPrices(
+        params.regionId ?? "",
+      );
+      return Result.success(result);
+    } catch (e) {
+      return Result.failure(e as Exception);
+    }
   }
 }
