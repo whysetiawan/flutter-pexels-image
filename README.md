@@ -9,11 +9,11 @@ This is Technical Assessment for Jala. The project architecture for this project
 
 ## Why Clean Architecture?
 
-Clean Architecture is a design pattern that helps to create software architectures that are easier to understand and maintain. By separating the business logic from the presentation layer and the data layer, the architecture is make each layer has its own responsibility. Creating a software that performs fast is easy, but creating a software that performs well is hard. Performs well means it's reliable and easy to maintain.
+Clean Architecture is a design pattern that helps to create software architectures that are easier to understand and maintain. By separating the business logic from the presentation layer and the data layer, the architecture is make each layer has its own responsibility. Creating a software that performs fast is easy, but creating a software that performs well is hard. Performs well means it's reliable and easy to maintain. But since clean architecture about separations of concern, _dependency drilling_ might be a problem. In order to solve the issue, i use `get_it` as **Service Locator**.
 
 ## Why Bloc?
 
-Bloc is one of the most popular state management around Flutter Developers. It may not as simple as GetX which provide almost everything into your app. Bloc is very flexible in most of cases. Since Clean Architecture goals is separating layer, so each layer should be decouple from each other. I also like to use Bloc as pure state management without including any widgets in there.
+Bloc is one of the most popular state management around Flutter Developers. It may not as simple as **GetX** which provide almost everything into your app. Bloc is very flexible in most of cases. Since Clean Architecture goals is separating layer, so each layer should be decouple from each other. I also like to use Bloc as pure state management without including any widgets in there.
 
 ## Atomic Design
 
