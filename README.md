@@ -25,4 +25,4 @@ I'm aware if the figma provide some design tokens like typography and color. I i
 
 ## Release
 
-- APK LINK
+- [APK](https://drive.google.com/file/d/1iOU5vn58EWyZOFktZLrXfIsuRygtyfow/view?usp=sharing)
