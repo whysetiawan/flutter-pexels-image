@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jala_test/core/di.dart';
 import 'package:jala_test/routes/root_router.dart';
 import 'package:jala_test/routes/routes.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jala_test/shared/styles/text_styles.dart';
 
 void main() {
+  injectDependencies();
   runApp(const MyApp());
 }
 
@@ -39,8 +42,14 @@ class MyApp extends StatelessWidget {
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
               primaryColor: Colors.blue,
               useMaterial3: true,
-              appBarTheme: const AppBarTheme(
+              appBarTheme: AppBarTheme(
                 backgroundColor: Colors.blue,
+                titleTextStyle: TextStyles.title2.copyWith(
+                  color: Colors.white,
+                ),
+                iconTheme: const IconThemeData(
+                  color: Colors.white, //change your color here
+                ),
               ),
               textTheme: GoogleFonts.latoTextTheme(),
             ),
