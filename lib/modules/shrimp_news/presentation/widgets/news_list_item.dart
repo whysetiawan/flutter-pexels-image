@@ -68,7 +68,7 @@ class NewsListItem extends StatelessWidget {
                         ),
                         InkWell(
                           onTap: () {
-                            Share.share("${API_URL.WEBVIEW}/posts/${_news.id}");
+                            Share.share("${API_URL.HOST}/posts/${_news.id}");
                           },
                           child: const Icon(Icons.share, color: Colors.grey),
                         ),
