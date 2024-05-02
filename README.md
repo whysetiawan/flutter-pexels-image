@@ -21,7 +21,7 @@ Most of the Clean Architecture declaring the **pages** in the presentation layer
 
 ## Styling
 
-I'm aware if the figma provide some design tokens like typography and color. I implement some of them in the app. So i can confidently say if the UI/UX team has standards for building software. I use `flutter_screenutil` for responsive design, so almost in every mobile devices it can be used.
+I'm aware if the figma provide some design tokens like typography and color. I implement some of them in the app. So i can confidently say if the UI/UX team has standards for building software. I use `flutter_screenutil` for responsive design, so it should be compatible in most of mobile devices .
 
 ## Release
 
