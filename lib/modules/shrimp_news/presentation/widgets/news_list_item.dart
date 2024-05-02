@@ -4,6 +4,7 @@ import 'package:jala_test/modules/shrimp_news/domain/entity/news_entity.dart';
 import 'package:jala_test/routes/routes.dart';
 import 'package:jala_test/shared/constants/api_url.dart';
 import 'package:jala_test/shared/styles/text_styles.dart';
+import 'package:share_plus/share_plus.dart';
 
 class NewsListItem extends StatelessWidget {
   final NewsEntity _news;
@@ -65,7 +66,12 @@ class NewsListItem extends StatelessWidget {
                             color: Colors.grey,
                           ),
                         ),
-                        const Icon(Icons.share, color: Colors.grey),
+                        InkWell(
+                          onTap: () {
+                            Share.share("${API_URL.WEBVIEW}/posts/${_news.id}");
+                          },
+                          child: const Icon(Icons.share, color: Colors.grey),
+                        ),
                       ],
                     )
                   ],

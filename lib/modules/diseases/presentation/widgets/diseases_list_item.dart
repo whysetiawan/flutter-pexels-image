@@ -4,11 +4,12 @@ import 'package:jala_test/modules/diseases/domain/entity/disease_entity.dart';
 import 'package:jala_test/routes/routes.dart';
 import 'package:jala_test/shared/constants/api_url.dart';
 import 'package:jala_test/shared/styles/text_styles.dart';
+import 'package:share_plus/share_plus.dart';
 
 class DiseaseListItem extends StatelessWidget {
-  final DiseaseEntity _news;
+  final DiseaseEntity _disease;
   const DiseaseListItem({super.key, required DiseaseEntity news})
-      : _news = news;
+      : _disease = news;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class DiseaseListItem extends StatelessWidget {
       child: InkWell(
         onTap: () {
           Navigator.of(context)
-              .pushNamed(Routes.diseaseDetail, arguments: _news);
+              .pushNamed(Routes.diseaseDetail, arguments: _disease);
         },
         child: Card(
           color: Colors.transparent,
@@ -36,7 +37,7 @@ class DiseaseListItem extends StatelessWidget {
                 borderRadius: const BorderRadius.vertical(
                   top: Radius.circular(8),
                 ),
-                child: _news.thumbnailPath == "No Image"
+                child: _disease.thumbnailPath == "No Image"
                     ? SizedBox(
                         height: 160.w,
                         child: const Center(
@@ -44,7 +45,7 @@ class DiseaseListItem extends StatelessWidget {
                         ),
                       )
                     : Image.network(
-                        "${API_URL.STORAGE}/${_news.thumbnailPath}",
+                        "${API_URL.STORAGE}/${_disease.thumbnailPath}",
                         height: 160.w,
                         fit: BoxFit.cover,
                       ),
@@ -55,9 +56,9 @@ class DiseaseListItem extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(_news.fullName, style: TextStyles.display3),
+                    Text(_disease.fullName, style: TextStyles.display3),
                     Text(
-                      _news.description,
+                      _disease.description,
                       style: TextStyles.body2.copyWith(
                         color: Colors.grey,
                       ),
@@ -70,12 +71,18 @@ class DiseaseListItem extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          _news.createdAt,
+                          _disease.createdAt,
                           style: TextStyles.body2.copyWith(
                             color: Colors.grey,
                           ),
                         ),
-                        const Icon(Icons.share, color: Colors.grey),
+                        InkWell(
+                            onTap: () {
+                              Share.share(
+                                "${API_URL.HOST}/diseases/${_disease.id}",
+                              );
+                            },
+                            child: const Icon(Icons.share, color: Colors.grey)),
                       ],
                     )
                   ],
