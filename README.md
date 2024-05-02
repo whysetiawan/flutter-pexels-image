@@ -9,7 +9,7 @@ This is Technical Assessment for Jala. The project architecture for this project
 
 ## Why Clean Architecture?
 
-Clean Architecture is a design pattern that helps to create software architectures that are easier to understand and maintain. By separating the business logic from the presentation layer and the data layer, the architecture is make each layer has its own responsibility. Creating a software that performs fast is easy, but creating a software that performs well is hard. Performs well means it's reliable and easy to maintain. But since clean architecture about separations of concern, _dependency drilling_ might be a problem. In order to solve the issue, i use `get_it` as **Service Locator**.
+Clean Architecture is a design pattern that helps to create software architectures that are easier to understand and maintain. By separating the business logic from the presentation layer and the data layer, the architecture is make each layer has its own responsibility. Creating a software that performs fast is easy, but creating a software that performs well is hard. Performs well means it's reliable and easy to maintain. But since clean architecture about separations of concern, _constructor injection hell_ might be a problem. In order to solve the issue, i use `get_it` as **Service Locator**.
 
 ## Why Bloc?
 
