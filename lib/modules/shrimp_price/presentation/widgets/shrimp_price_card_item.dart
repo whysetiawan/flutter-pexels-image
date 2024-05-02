@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jala_test/modules/shrimp_price/domain/entities/shrimp_price_entity.dart';
 import 'package:jala_test/modules/shrimp_price/presentation/widgets/verified_mark.dart';
+import 'package:jala_test/routes/routes.dart';
 import 'package:jala_test/shared/constants/api_url.dart';
 import 'package:jala_test/shared/styles/text_styles.dart';
 
@@ -94,7 +95,12 @@ class ShrimpPriceCardItem extends StatelessWidget {
                     ],
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).pushNamed(
+                        Routes.shrimpPriceDetail,
+                        arguments: data,
+                      );
+                    },
                     child: const Text("Lihat Detail"),
                   ),
                 ],

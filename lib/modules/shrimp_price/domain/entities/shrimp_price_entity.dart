@@ -39,8 +39,16 @@ final class ShrimpPriceItem extends Equatable {
 
   Map<int, int?> get price => _prices;
 
-  List<int?> priceAsList() {
-    return _prices.entries.map((e) => e.value).toList();
+  List<PriceEntity> priceAsList() {
+    return _prices.entries
+        .map(
+          (e) => PriceEntity(
+            key: e.key,
+            value: e.value ?? 1,
+          ),
+        )
+        .where((element) => element.value > 1)
+        .toList();
   }
 
   ShrimpPriceItem copyWith({
@@ -71,6 +79,7 @@ final class PriceCreatorEntity extends Equatable {
   final bool isVerified;
   final String occupation;
   final String avatarPath;
+  final String phoneNumber;
 
   const PriceCreatorEntity({
     required this.id,
@@ -78,6 +87,7 @@ final class PriceCreatorEntity extends Equatable {
     required this.isVerified,
     required this.occupation,
     required this.avatarPath,
+    required this.phoneNumber,
   });
 
   PriceCreatorEntity copyWith({
@@ -86,6 +96,7 @@ final class PriceCreatorEntity extends Equatable {
     bool? isVerified,
     String? occupation,
     String? avatarPath,
+    String? phoneNumber,
   }) {
     return PriceCreatorEntity(
       id: id ?? this.id,
@@ -93,9 +104,20 @@ final class PriceCreatorEntity extends Equatable {
       isVerified: isVerified ?? this.isVerified,
       occupation: occupation ?? this.occupation,
       avatarPath: avatarPath ?? this.avatarPath,
+      phoneNumber: phoneNumber ?? this.phoneNumber,
     );
   }
 
   @override
   List<Object?> get props => [id, name, isVerified, occupation, avatarPath];
+}
+
+final class PriceEntity extends Equatable {
+  final int key;
+  final int value;
+
+  const PriceEntity({required this.key, required this.value});
+
+  @override
+  List<Object?> get props => [key, value];
 }

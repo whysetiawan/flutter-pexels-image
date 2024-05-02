@@ -21,6 +21,7 @@ final class ShrimpPriceMapper {
                 isVerified: e.creator.buyer ?? false,
                 occupation: e.creator.occupation ?? "",
                 avatarPath: e.creator.avatar,
+                phoneNumber: e.creator.phone ?? "",
               ),
               prices: {
                 20: e.size20,
