@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:jala_test/core/domain/usecase_result.dart';
+import 'package:pexels_image/core/domain/usecase_result.dart';
 
 void main() {
   test("should return success", () {

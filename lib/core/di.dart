@@ -1,23 +1,20 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:jala_test/core/data/dio_http.dart';
-import 'package:jala_test/modules/diseases/data/api/diseases_api_datasource.dart';
-import 'package:jala_test/modules/diseases/data/diseases_repository_impl.dart';
-import 'package:jala_test/modules/diseases/domain/diseases_repository.dart';
-import 'package:jala_test/modules/diseases/domain/usecases/get_disease_list_usecase.dart';
-import 'package:jala_test/modules/shrimp_news/data/api/shrimp_news_api_datasource.dart';
-import 'package:jala_test/modules/shrimp_news/data/shrimp_news_repository_impl.dart';
-import 'package:jala_test/modules/shrimp_news/domain/shrimp_news_repository.dart';
-import 'package:jala_test/modules/shrimp_news/domain/usecases/get_shrimp_news_usecase.dart';
-import 'package:jala_test/modules/shrimp_price/data/datasource/shrimp_price_api_datasource.dart';
-import 'package:jala_test/modules/shrimp_price/data/datasource/shrimp_price_local_datasource.dart';
-import 'package:jala_test/modules/shrimp_price/data/shrimp_price_repository_impl.dart';
-import 'package:jala_test/modules/shrimp_price/domain/shrimp_price_repository.dart';
-import 'package:jala_test/modules/shrimp_price/domain/usecases/get_regions_usecase.dart';
-import 'package:jala_test/modules/shrimp_price/domain/usecases/get_shrimp_prices_usecase.dart';
-import 'package:jala_test/modules/shrimp_price/domain/usecases/get_shrimp_size_usecase.dart';
+import 'package:pexels_image/core/data/dio_http.dart';
+import 'package:pexels_image/modules/photos/data/api/photos_api.dart';
+import 'package:pexels_image/modules/photos/data/photos_repository_impl.dart';
+import 'package:pexels_image/modules/photos/domain/photos_repository.dart';
+import 'package:pexels_image/modules/photos/domain/usecase/get_photos_usecase.dart';
+
+import 'package:pexels_image/modules/shrimp_news/data/api/shrimp_news_api_datasource.dart';
+import 'package:pexels_image/modules/shrimp_news/data/shrimp_news_repository_impl.dart';
+import 'package:pexels_image/modules/shrimp_news/domain/shrimp_news_repository.dart';
+import 'package:pexels_image/modules/shrimp_news/domain/usecases/get_shrimp_news_usecase.dart';
+
+import 'package:pexels_image/shared/constants/api_url.dart';
 
 final sl = GetIt.instance;
+
 void injectDependencies() {
   // http client
   sl.registerLazySingleton<Dio>(() => DioHttp().setup());
@@ -26,54 +23,45 @@ void injectDependencies() {
     instanceName: "DIO_WITH_TOKEN",
   );
 
+  sl.registerLazySingleton(
+    () => DioHttp(
+      baseUrl: API_URL.PEXEL_API_URL,
+    ).authorizePexels(),
+    instanceName: "PEXELS_HTTP_CLIENT",
+  );
+
   // Datasources
-  sl.registerLazySingleton<ShrimpPriceApiDataSource>(
-    () => ShrimpPriceApiDataSource(
-      client: sl(),
+  sl.registerLazySingleton<PhotosApiDataSource>(
+    () => PhotosApiDataSource(
+      client: sl(
+        instanceName: "PEXELS_HTTP_CLIENT",
+      ),
     ),
   );
-  sl.registerLazySingleton<ShrimpPriceLocalDataSource>(
-    () => ShrimpPriceLocalDataSource(),
-  );
+
   sl.registerLazySingleton<ShrimpNewsApiDataSource>(
     () => ShrimpNewsApiDataSource(client: sl()),
   );
-  sl.registerLazySingleton<DiseasesApiDataSource>(
-    () => DiseasesApiDataSource(client: sl(instanceName: "DIO_WITH_TOKEN")),
-  );
 
   // Repositories
-  sl.registerLazySingleton<ShrimpPriceRepository>(
-    () => ShrimpPriceRepositoryImpl(
-      shrimpPriceApi: sl(),
-      shrimpPriceLocal: sl(),
+  sl.registerLazySingleton<PhotosRepository>(
+    () => PhotosRepositoryImpl(
+      photosApiDataSource: sl(),
     ),
   );
+
   sl.registerLazySingleton<ShrimpNewsRepository>(
     () => ShrimpNewsRepositoryImpl(
       shrimpApiDataSource: sl(),
     ),
   );
-  sl.registerLazySingleton<DiseasesRepository>(
-    () => DiseasesRepositoryImpl(
-      shrimpApiDataSource: sl(),
-    ),
-  );
 
   // Usecases
-  sl.registerLazySingleton<GetShrimpSizeUseCase>(
-    () => GetShrimpSizeUseCase(shrimpPriceRepository: sl()),
+  sl.registerLazySingleton(
+    () => GetPhotosUseCase(photosRepository: sl()),
   );
-  sl.registerLazySingleton<GetShrimpPricesUseCase>(
-    () => GetShrimpPricesUseCase(shrimpPriceRepository: sl()),
-  );
-  sl.registerLazySingleton<GetRegionsUseCase>(
-    () => GetRegionsUseCase(shrimpPriceRepository: sl()),
-  );
+
   sl.registerLazySingleton<GetShrimpNewsUseCase>(
     () => GetShrimpNewsUseCase(shrimpNewsRepository: sl()),
-  );
-  sl.registerLazySingleton<GetDiseaseListUseCase>(
-    () => GetDiseaseListUseCase(diseasesRepository: sl()),
   );
 }

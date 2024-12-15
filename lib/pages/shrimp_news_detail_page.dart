@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jala_test/modules/shrimp_news/domain/entity/news_entity.dart';
-import 'package:jala_test/shared/constants/api_url.dart';
+import 'package:pexels_image/modules/shrimp_news/domain/entity/news_entity.dart';
+import 'package:pexels_image/shared/constants/api_url.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class ShrimpNewsDetailPage extends StatelessWidget {

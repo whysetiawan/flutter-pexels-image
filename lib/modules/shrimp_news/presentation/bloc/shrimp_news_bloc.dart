@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:jala_test/modules/shrimp_news/domain/entity/news_entity.dart';
-import 'package:jala_test/modules/shrimp_news/domain/usecases/get_shrimp_news_usecase.dart';
+import 'package:pexels_image/modules/shrimp_news/domain/entity/news_entity.dart';
+import 'package:pexels_image/modules/shrimp_news/domain/usecases/get_shrimp_news_usecase.dart';
 
 part 'shrimp_news_event.dart';
 part 'shrimp_news_state.dart';

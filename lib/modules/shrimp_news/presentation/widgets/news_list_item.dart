@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:jala_test/modules/shrimp_news/domain/entity/news_entity.dart';
-import 'package:jala_test/routes/routes.dart';
-import 'package:jala_test/shared/constants/api_url.dart';
-import 'package:jala_test/shared/styles/text_styles.dart';
+import 'package:pexels_image/modules/shrimp_news/domain/entity/news_entity.dart';
+import 'package:pexels_image/routes/routes.dart';
+import 'package:pexels_image/shared/constants/api_url.dart';
+import 'package:pexels_image/shared/styles/text_styles.dart';
 import 'package:share_plus/share_plus.dart';
 
 class NewsListItem extends StatelessWidget {

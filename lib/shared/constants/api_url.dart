@@ -5,4 +5,7 @@ class API_URL {
   static const String BASE = 'https://app.jala.tech/api';
   static const String STORAGE = 'https://app.jala.tech/storage';
   static const String WEBVIEW = 'https://app.jala.tech/web_view';
+  static const String PEXEL_API_URL = 'https://api.pexels.com/v1/';
+  static const String PEXEL_API_KEY =
+      'wnpztsfWibMyia3IJYBKVk5KeETAie4eYpkORlWzDe2Uhf2uS7bAOOJD';
 }

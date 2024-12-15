@@ -1,4 +1,4 @@
-import 'package:jala_test/core/data/dto/meta_links_response_dto.dart';
+import 'package:pexels_image/core/data/dto/meta_links_response_dto.dart';
 
 final class ShrimpNewsResponseDto {
   final List<Datum> data;

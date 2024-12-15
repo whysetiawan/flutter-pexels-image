@@ -1,4 +1,4 @@
-package com.example.jala_test
+package com.example.pexels_image
 
 import io.flutter.embedding.android.FlutterActivity
 

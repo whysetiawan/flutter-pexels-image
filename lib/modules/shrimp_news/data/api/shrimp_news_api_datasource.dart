@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:jala_test/modules/shrimp_news/data/dto/shrimp_news_response_dto.dart';
-import 'package:jala_test/modules/shrimp_news/data/mapper/shrimp_news_mapper.dart';
-import 'package:jala_test/modules/shrimp_news/domain/entity/news_entity.dart';
+import 'package:pexels_image/modules/shrimp_news/data/dto/shrimp_news_response_dto.dart';
+import 'package:pexels_image/modules/shrimp_news/data/mapper/shrimp_news_mapper.dart';
+import 'package:pexels_image/modules/shrimp_news/domain/entity/news_entity.dart';
 
 class ShrimpNewsApiDataSource {
   final Dio client;

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:jala_test/core/di.dart';
-import 'package:jala_test/routes/root_router.dart';
-import 'package:jala_test/routes/routes.dart';
+import 'package:pexels_image/core/di.dart';
+import 'package:pexels_image/routes/root_router.dart';
+import 'package:pexels_image/routes/routes.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:jala_test/shared/styles/text_styles.dart';
+import 'package:pexels_image/shared/styles/text_styles.dart';
 
 void main() {
   injectDependencies();
@@ -39,11 +39,11 @@ class MyApp extends StatelessWidget {
               //
               // This works for code too, not just values: Most code changes can be
               // tested with just a hot reload.
-              colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-              primaryColor: Colors.blue,
+              colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+              primaryColor: Colors.green,
               useMaterial3: true,
               appBarTheme: AppBarTheme(
-                backgroundColor: Colors.blue,
+                backgroundColor: Colors.green,
                 titleTextStyle: TextStyles.title2.copyWith(
                   color: Colors.white,
                 ),

@@ -5,19 +5,19 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "jala_test",
+      "name": "pexels_image",
       "request": "launch",
       "type": "dart",
       "args": ["--verbose"]
     },
     {
-      "name": "jala_test (profile mode)",
+      "name": "pexels_image (profile mode)",
       "request": "launch",
       "type": "dart",
       "flutterMode": "profile"
     },
     {
-      "name": "jala_test (release mode)",
+      "name": "pexels_image (release mode)",
       "request": "launch",
       "type": "dart",
       "flutterMode": "release"

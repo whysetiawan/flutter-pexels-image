@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:jala_test/modules/shrimp_news/presentation/widgets/news_list.dart';
-import 'package:jala_test/shared/styles/text_styles.dart';
+import 'package:pexels_image/modules/shrimp_news/presentation/widgets/news_list.dart';
+import 'package:pexels_image/shared/styles/text_styles.dart';
 
 class ShrimpNewsPage extends StatelessWidget {
   const ShrimpNewsPage({super.key});

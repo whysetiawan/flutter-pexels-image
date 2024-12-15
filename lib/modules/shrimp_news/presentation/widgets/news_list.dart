@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jala_test/modules/shrimp_news/presentation/bloc/shrimp_news_bloc.dart';
-import 'package:jala_test/modules/shrimp_news/presentation/widgets/news_list_item.dart';
+import 'package:pexels_image/modules/shrimp_news/presentation/bloc/shrimp_news_bloc.dart';
+import 'package:pexels_image/modules/shrimp_news/presentation/widgets/news_list_item.dart';
 
 class NewsList extends StatefulWidget {
   const NewsList({super.key});
